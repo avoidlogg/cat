@@ -16,7 +16,12 @@
 /* We still need color-scheme dark so standard browser elements look correct */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
   color-scheme: dark;
+}
+
+section[id] {
+  scroll-margin-top: 4rem;
 }
 
 body {
@@ -208,6 +213,7 @@ body {
 
 .motion-reveal.motion-settled {
   will-change: auto;
+  transition-delay: 0ms !important;
 }
 
 .motion-delay-1 {
@@ -396,24 +402,21 @@ body {
 }
 
 .scroll-cue__arrow {
+  display: block;
   color: rgb(240 240 245 / 0.62);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 1rem;
   line-height: 1;
-  animation: scrollArrow 1.35s ease-in-out infinite;
+  animation: scrollArrow 1.25s ease-in-out infinite !important;
   will-change: transform;
+  transform: translate3d(0, -3px, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   .animate-header-in,
   .animate-gradient,
   .animate-hero-drift,
   .animate-title-breathe,
-  .scroll-cue__arrow,
   .motion-modal-backdrop,
   .motion-modal-panel {
     animation: none !important;
@@ -430,9 +433,4 @@ body {
     transition-duration: 0.01ms !important;
   }
 
-  .motion-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }
