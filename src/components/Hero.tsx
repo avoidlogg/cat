@@ -3,7 +3,7 @@ import { LuArrowRight } from "react-icons/lu";
 export default function Hero() {
   return (
     <>
-      <div className="bg-background relative min-h-[75svh] sm:min-h-[100svh] flex items-center justify-center overflow-hidden">
+      <div className="hero-motion-surface motion-viewport-surface bg-background relative min-h-[75svh] sm:min-h-[100svh] flex items-center justify-center overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-0">
           <img
             alt=""
