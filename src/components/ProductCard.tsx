@@ -18,7 +18,8 @@ export default function ProductCard({ product, variants }: { product: Product | 
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ 
-            productId: selectedVariant.uniqid, 
+            productId: product.uniqid,
+            variantId: selectedVariant.uniqid,
             email 
           }),
         });
