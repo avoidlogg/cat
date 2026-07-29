@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { productId, email } = await req.json();
+    const { productId, email, variantId } = await req.json();
 
     if (!productId || !email) {
       return NextResponse.json(
@@ -20,6 +20,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const item: Record<string, unknown> = {
+      product_id: productId,
+      quantity: 1,
+    };
+    if (variantId) {
+      item.variant_id = variantId;
+    }
+
     const shoppexRes = await fetch("https://api.shoppex.io/dev/v1/orders", {
       method: "POST",
       headers: {
@@ -28,12 +36,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         email: email,
-        items: [
-          {
-            product_id: productId,
-            quantity: 1,
-          },
-        ],
+        items: [item],
       }),
     });
 
