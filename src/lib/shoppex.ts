@@ -52,7 +52,19 @@ export async function getProducts(): Promise<Product[]> {
     }
 
     const json = (await res.json()) as ProductsResponse;
-    return json.data || [];
+    const products = json.data || [];
+
+    for (const product of products) {
+      if (!product.price || product.price === 0) {
+        const variants = await getProductVariants(product.uniqid);
+        if (variants.length > 0) {
+          const defaultVariant = variants.find(v => v.is_default) || variants[0];
+          product.price = defaultVariant.price;
+        }
+      }
+    }
+
+    return products;
   } catch (error) {
     console.error("Error fetching Shoppex products:", error);
     return [];
