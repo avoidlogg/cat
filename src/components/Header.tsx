@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <>
-      <header className="fixed left-0 right-0 z-50">
+      <header className="fixed left-0 right-0 z-50 animate-header-in">
         <div className="bg-background/75 backdrop-blur-xl backdrop-saturate-[1.8] border-b border-border shadow-sm">
           <div className="relative flex h-16 items-center justify-between px-6 md:px-10">
             <a className="flex items-center shrink-0" href="/">
@@ -12,13 +12,13 @@ export default function Header() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block">
               <nav className="flex items-center gap-8">
                 <a
-                  className="relative text-sm font-medium transition-colors duration-200 py-1 text-muted-foreground/60 hover:text-foreground"
+                  className="motion-nav-link relative text-sm font-medium transition-colors duration-200 py-1 text-muted-foreground/60 hover:text-foreground"
                   href="/reviews"
                 >
                   Reviews
                 </a>
                 <a
-                  className="relative text-sm font-medium transition-colors duration-200 py-1 text-muted-foreground/60 hover:text-foreground"
+                  className="motion-nav-link relative text-sm font-medium transition-colors duration-200 py-1 text-muted-foreground/60 hover:text-foreground"
                   href="/status"
                 >
                   Status
