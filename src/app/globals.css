@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0a0a0f;
+  --color-foreground: #f0f0f5;
+  --color-primary: #719ce0;
+  --color-primary-light: #91ace1;
+  --color-primary-dark: #416cad;
+  --color-border: #1e1e30;
+  --color-card: #14141e;
+  --color-muted-foreground: #9090a5;
+  
+  --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* We still need color-scheme dark so standard browser elements look correct */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; opacity: 0.6; }
+  25% { background-position: 100% 0%; opacity: 1; }
+  50% { background-position: 100% 100%; opacity: 0.6; }
+  75% { background-position: 0% 100%; opacity: 1; }
+}
+.animate-gradient {
+  animation: gradientShift 12s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+/* Base custom animations if any */
+@keyframes auroraFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes aurora-1 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-50px) scale(1.05); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(50px) scale(0.95); }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(50px) scale(1.02); }
+}
+@keyframes aurora-4 {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(-50px) scale(0.98); }
+}
+
+.animate-aurora-1 { animation: aurora-1 15s ease-in-out infinite; }
+.animate-aurora-2 { animation: aurora-2 18s ease-in-out infinite; }
+.animate-aurora-3 { animation: aurora-3 20s ease-in-out infinite; }
+.animate-aurora-4 { animation: aurora-4 12s ease-in-out infinite; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 5px;
+  border: 2px solid var(--color-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Entry Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-delayed {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delayed-2 {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
