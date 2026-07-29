@@ -11,6 +11,7 @@ export default function ProductCard({ product, variants }: { product: Product | 
 
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!product) return;
     if (selectedVariant && email) {
       setLoading(true);
       try {
