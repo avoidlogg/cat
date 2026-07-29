@@ -53,8 +53,8 @@ export default function ProductCard({ product, variants }: { product: Product | 
 
   return (
     <>
-      <div className="w-full max-w-4xl flex justify-center">
-      <div className={`w-full relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-500 border bg-card ${expanded ? 'border-primary/50' : 'border-border hover:border-primary/30'}`}>
+      <div className="motion-reveal motion-delay-1 w-full max-w-4xl flex justify-center">
+      <div className={`motion-product-card w-full relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-500 border bg-card ${expanded ? 'border-primary/50' : 'border-border hover:border-primary/30'}`}>
         
         {/* Clickable Header Area */}
         <div 
@@ -157,11 +157,11 @@ export default function ProductCard({ product, variants }: { product: Product | 
       {/* Checkout Modal */}
       {selectedVariant && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+          className="motion-modal-backdrop fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
           onClick={() => setSelectedVariant(null)}
         >
           <div 
-            className="bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-2xl relative"
+            className="motion-modal-panel bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button 
