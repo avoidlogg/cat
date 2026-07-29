@@ -1,113 +1,70 @@
-@import "tailwindcss";
+import type { Metadata } from "next"
+import "./globals.css"
+import MotionEffects from "@/components/MotionEffects"
 
-@theme {
-  --color-background: #0a0a0f;
-  --color-foreground: #f0f0f5;
-  --color-primary: #719ce0;
-  --color-primary-light: #91ace1;
-  --color-primary-dark: #416cad;
-  --color-border: #1e1e30;
-  --color-card: #14141e;
-  --color-muted-foreground: #9090a5;
-  
-  --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
-}
-
-/* We still need color-scheme dark so standard browser elements look correct */
-html {
-  scroll-behavior: smooth;
-  color-scheme: dark;
-}
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; opacity: 0.6; }
-  25% { background-position: 100% 0%; opacity: 1; }
-  50% { background-position: 100% 100%; opacity: 0.6; }
-  75% { background-position: 0% 100%; opacity: 1; }
-}
-.animate-gradient {
-  animation: gradientShift 12s ease-in-out infinite;
-  background-size: 200% 200%;
+export const metadata: Metadata = {
+  title: "Heroic Bypass - #1 NVIDIA Stream Proof FiveM Cheat",
+  icons: {
+    icon: "/logo.png",
+  },
+  description:
+    "The premium undetected FiveM external cheat. Features the best aimbot, ESP, and HWID spoofer. 100% NVIDIA Stream Proof and OBS hidden. Join thousands of users today.",
+  keywords: [
+    "fivem cheat", "fivem external", "fivem aimbot", "fivem esp",
+    "fivem spoofer", "hwid spoofer", "nvidia stream proof", "obs bypass",
+    "undetected fivem cheat",
+  ],
+  openGraph: {
+    title: "Heroic Bypass - #1 NVIDIA Stream Proof FiveM Cheat",
+    description:
+      "The premium undetected FiveM external cheat. 100% NVIDIA Stream Proof, OBS hidden, and constantly updated.",
+    siteName: "Heroic Bypass",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Heroic Bypass - #1 NVIDIA Stream Proof FiveM Cheat",
+    description:
+      "The premium undetected FiveM external cheat. 100% NVIDIA Stream Proof, OBS hidden, and constantly updated.",
+  },
+  robots: { index: true, follow: true },
+  other: {
+    "color-scheme": "dark",
+  },
 }
 
-/* Base custom animations if any */
-@keyframes auroraFloat {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0, 0) scale(1); }
-}
-
-@keyframes aurora-1 {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-50px) scale(1.05); }
-}
-@keyframes aurora-2 {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(50px) scale(0.95); }
-}
-@keyframes aurora-3 {
-  0%, 100% { transform: translateX(0) scale(1); }
-  50% { transform: translateX(50px) scale(1.02); }
-}
-@keyframes aurora-4 {
-  0%, 100% { transform: translateX(0) scale(1); }
-  50% { transform: translateX(-50px) scale(0.98); }
-}
-
-.animate-aurora-1 { animation: aurora-1 15s ease-in-out infinite; }
-.animate-aurora-2 { animation: aurora-2 18s ease-in-out infinite; }
-.animate-aurora-3 { animation: aurora-3 20s ease-in-out infinite; }
-.animate-aurora-4 { animation: aurora-4 12s ease-in-out infinite; }
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 5px;
-  border: 2px solid var(--color-background);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-dark);
-}
-
-/* Entry Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-fade-in-delayed {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-delayed-2 {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-  opacity: 0;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className="dark">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        {/* Discord/Twitter Embed Theme Color matching globals.css background */}
+        <meta name="theme-color" content="#0a0a0f" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Heroic Bypass",
+              url: "https://heroicbypass.com",
+              description: "The premium undetected NVIDIA Stream Proof FiveM external cheat.",
+              sameAs: ["https://discord.gg/heroicbypass"],
+            }),
+          }}
+        />
+      </head>
+      <body>
+        <div className="fixed inset-0 -z-10 animate-gradient bg-gradient-to-br from-blue-950/20 via-transparent via-30% to-blue-900/10 to-70%" />
+        {children}
+        <MotionEffects />
+      </body>
+    </html>
+  )
 }
