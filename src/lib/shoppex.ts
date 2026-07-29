@@ -21,18 +21,10 @@ export async function getProducts(): Promise<Product[]> {
       {
         id: "mock-1",
         uniqid: "mock-1",
-        title: "Heroic FiveM External (30 Days)",
-        price: 15.0,
+        title: "FiveM External",
+        price: 0,
         currency: "USD",
-        description: "Premium undetected external cheat.",
-      },
-      {
-        id: "mock-2",
-        uniqid: "mock-2",
-        title: "Heroic FiveM External (Lifetime)",
-        price: 45.0,
-        currency: "USD",
-        description: "Premium undetected external cheat. Lifetime access.",
+        description: "Premium undetected cheating solution with aimbot, ESP, stream-proof technology, and an advanced HWID spoofer included.",
       },
     ];
   }
@@ -89,7 +81,28 @@ interface VariantsResponse {
 export async function getProductVariants(productId: string): Promise<Variant[]> {
   const apiKey = process.env.SHOPPEX_API_KEY;
   if (!apiKey) {
-    return [];
+    return [
+      {
+        id: "mock-v1",
+        uniqid: "mock-v1",
+        product_uniqid: "mock-1",
+        title: "30 Days",
+        price: 15.0,
+        description: "Premium undetected external cheat.",
+        stock: null,
+        is_default: true,
+      },
+      {
+        id: "mock-v2",
+        uniqid: "mock-v2",
+        product_uniqid: "mock-1",
+        title: "Lifetime",
+        price: 45.0,
+        description: "Premium undetected external cheat. Lifetime access.",
+        stock: null,
+        is_default: false,
+      },
+    ];
   }
 
   try {
