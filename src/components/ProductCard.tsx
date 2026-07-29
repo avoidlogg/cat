@@ -1,24 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import type { Product } from "@/lib/shoppex";
+import type { Product, Variant } from "@/lib/shoppex";
 
-export default function ProductCard({ products }: { products: Product[] }) {
+export default function ProductCard({ product, variants }: { product: Product | null; variants: Variant[] }) {
   const [expanded, setExpanded] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<Variant | null>(null);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedProduct && email) {
+    if (selectedVariant && email) {
       setLoading(true);
       try {
         const res = await fetch("/api/checkout", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ 
-            productId: selectedProduct.uniqid, 
+            productId: selectedVariant.uniqid, 
             email 
           }),
         });
@@ -38,6 +38,16 @@ export default function ProductCard({ products }: { products: Product[] }) {
       }
     }
   };
+
+  if (!product) {
+    return (
+      <div className="w-full max-w-4xl flex justify-center">
+        <div className="w-full p-8 text-center text-muted-foreground bg-card border border-border rounded-2xl">
+          Products currently unavailable. Please check back later or contact support.
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -72,7 +82,7 @@ export default function ProductCard({ products }: { products: Product[] }) {
           <div className="flex flex-col p-6 sm:p-8 bg-card relative z-20 pb-4">
             <div className="flex justify-between items-center mb-2">
               <h3 className="font-bold tracking-tight text-2xl sm:text-3xl text-foreground">
-                FiveM External
+                {product.title}
               </h3>
               <div className="flex items-center gap-2 text-primary font-medium bg-primary/10 px-4 py-2 rounded-full border border-primary/20 transition-colors group-hover:bg-primary/20">
                 {expanded ? (
@@ -89,7 +99,7 @@ export default function ProductCard({ products }: { products: Product[] }) {
               </div>
             </div>
             <p className="text-sm sm:text-base text-muted-foreground">
-              Premium undetected cheating solution with aimbot, ESP, stream-proof technology, and an advanced HWID spoofer included.
+              {product.description || "Premium undetected cheating solution with aimbot, ESP, stream-proof technology, and an advanced HWID spoofer included."}
             </p>
           </div>
         </div>
@@ -101,28 +111,28 @@ export default function ProductCard({ products }: { products: Product[] }) {
           <div className="p-6 sm:p-8 pt-0 border-t border-border/50 mt-2">
             <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 mt-4">Available Plans</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {products.length > 0 ? (
-                products.map((product) => (
+              {variants.length > 0 ? (
+                variants.map((variant) => (
                   <div 
-                    key={product.uniqid} 
+                    key={variant.uniqid} 
                     className="flex flex-col justify-between p-5 rounded-xl border border-border bg-background/50 hover:border-primary/50 hover:shadow-[0_0_15px_theme(colors.primary/20%)] transition-all duration-300"
                   >
                     <div>
-                      <h4 className="font-semibold text-lg text-foreground">{product.title}</h4>
-                      {product.description && (
-                        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{product.description}</p>
+                      <h4 className="font-semibold text-lg text-foreground">{variant.title}</h4>
+                      {variant.description && (
+                        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{variant.description}</p>
                       )}
                     </div>
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-xl font-bold text-primary">
-                        {Number(product.price) > 0 ? `$${Number(product.price).toFixed(2)}` : "Contact for pricing"} <span className="text-sm font-normal text-muted-foreground">{Number(product.price) > 0 ? product.currency : ""}</span>
+                        ${(Number(variant.price) || 0).toFixed(2)} <span className="text-sm font-normal text-muted-foreground">{product.currency}</span>
                       </span>
                       
                       <button 
                         className="px-5 py-2.5 bg-primary/10 text-primary border border-primary/20 font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setSelectedProduct(product);
+                          setSelectedVariant(variant);
                         }}
                       >
                         Purchase
@@ -132,7 +142,7 @@ export default function ProductCard({ products }: { products: Product[] }) {
                 ))
               ) : (
                 <div className="col-span-full py-8 text-center text-muted-foreground bg-background/50 rounded-xl border border-border border-dashed">
-                  Products currently unavailable. Please check back later or contact support.
+                  Plans currently unavailable. Please check back later or contact support.
                 </div>
               )}
             </div>
@@ -143,10 +153,10 @@ export default function ProductCard({ products }: { products: Product[] }) {
     </div>
 
       {/* Checkout Modal */}
-      {selectedProduct && (
+      {selectedVariant && (
         <div 
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
-          onClick={() => setSelectedProduct(null)}
+          onClick={() => setSelectedVariant(null)}
         >
           <div 
             className="bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-2xl relative"
@@ -154,14 +164,14 @@ export default function ProductCard({ products }: { products: Product[] }) {
           >
             <button 
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setSelectedProduct(null)}
+              onClick={() => setSelectedVariant(null)}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
             
             <h3 className="text-2xl font-bold mb-2">Checkout Details</h3>
             <p className="text-sm text-muted-foreground mb-6">
-              Enter your email address to receive your license key and instructions for <span className="font-semibold text-foreground">{selectedProduct.title}</span>.
+              Enter your email address to receive your license key and instructions for <span className="font-semibold text-foreground">{selectedVariant.title}</span>.
             </p>
             
             <form onSubmit={handleCheckout}>
