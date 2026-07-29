@@ -7,7 +7,7 @@ export default function Features() {
         <div className="w-full h-full flex flex-col">
           <div className="relative w-full">
             <div className="text-center relative overflow-hidden py-8 md:py-12 px-4 md:px-8 lg:px-12">
-              <h2 className="text-sm text-muted-foreground text-balance font-semibold tracking-tigh uppercase">
+              <h2 className="motion-reveal text-sm text-muted-foreground text-balance font-semibold tracking-tigh uppercase">
                 Why choose us
               </h2>
             </div>
@@ -22,9 +22,9 @@ export default function Features() {
           </div>
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              <div className="flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
+              <div className="motion-reveal motion-feature-card flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
                 <div className="flex flex-col gap-y-3 items-center">
-                  <div className="bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
+                  <div className="motion-feature-icon bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -52,9 +52,9 @@ export default function Features() {
                   a premium experience.
                 </p>
               </div>
-              <div className="flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
+              <div className="motion-reveal motion-delay-1 motion-feature-card flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
                 <div className="flex flex-col gap-y-3 items-center">
-                  <div className="bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
+                  <div className="motion-feature-icon bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -84,9 +84,9 @@ export default function Features() {
                   minutes.
                 </p>
               </div>
-              <div className="flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
+              <div className="motion-reveal motion-delay-2 motion-feature-card flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
                 <div className="flex flex-col gap-y-3 items-center">
-                  <div className="bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
+                  <div className="motion-feature-icon bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -114,9 +114,9 @@ export default function Features() {
                   your questions are answered, fast.
                 </p>
               </div>
-              <div className="flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
+              <div className="motion-reveal motion-feature-card flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
                 <div className="flex flex-col gap-y-3 items-center">
-                  <div className="bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
+                  <div className="motion-feature-icon bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -151,9 +151,9 @@ export default function Features() {
                   and dominate exactly how you want.
                 </p>
               </div>
-              <div className="flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
+              <div className="motion-reveal motion-delay-1 motion-feature-card flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
                 <div className="flex flex-col gap-y-3 items-center">
-                  <div className="bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
+                  <div className="motion-feature-icon bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -181,9 +181,9 @@ export default function Features() {
                   latest game versions, and packed with new features.
                 </p>
               </div>
-              <div className="flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
+              <div className="motion-reveal motion-delay-2 motion-feature-card flex flex-col gap-y-3 items-center justify-center py-10 px-6 transition-colors duration-300 hover:bg-white/[0.03]">
                 <div className="flex flex-col gap-y-3 items-center">
-                  <div className="bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
+                  <div className="motion-feature-icon bg-linear-to-b from-primary to-primary/80 p-2.5 rounded-lg text-white">
                     <LuMonitorPlay className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-medium text-card-foreground text-center text-balance">
