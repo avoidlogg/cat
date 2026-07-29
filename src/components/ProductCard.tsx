@@ -115,7 +115,7 @@ export default function ProductCard({ products }: { products: Product[] }) {
                     </div>
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-xl font-bold text-primary">
-                        ${product.price} <span className="text-sm font-normal text-muted-foreground">{product.currency}</span>
+                        {Number(product.price) > 0 ? `$${Number(product.price).toFixed(2)}` : "Contact for pricing"} <span className="text-sm font-normal text-muted-foreground">{Number(product.price) > 0 ? product.currency : ""}</span>
                       </span>
                       
                       <button 
