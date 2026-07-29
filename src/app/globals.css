@@ -20,6 +20,10 @@ html {
   color-scheme: dark;
 }
 
+html.inertial-scrolling {
+  scroll-behavior: auto !important;
+}
+
 section[id] {
   scroll-margin-top: 4rem;
 }
@@ -57,19 +61,19 @@ body {
 
 @keyframes aurora-1 {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-50px) scale(1.05); }
+  50% { transform: translateY(-28px) scale(1.035); }
 }
 @keyframes aurora-2 {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(50px) scale(0.95); }
+  50% { transform: translateY(30px) scale(0.97); }
 }
 @keyframes aurora-3 {
   0%, 100% { transform: translateX(0) scale(1); }
-  50% { transform: translateX(50px) scale(1.02); }
+  50% { transform: translateX(30px) scale(1.015); }
 }
 @keyframes aurora-4 {
   0%, 100% { transform: translateX(0) scale(1); }
-  50% { transform: translateX(-50px) scale(0.98); }
+  50% { transform: translateX(-28px) scale(0.985); }
 }
 
 .animate-aurora-1 { animation: aurora-1 15s ease-in-out infinite; }
@@ -196,12 +200,32 @@ body {
   transform-origin: center;
 }
 
+.motion-viewport-surface:not(.motion-in-viewport) .animate-hero-drift,
+.motion-viewport-surface:not(.motion-in-viewport) .animate-aurora-1,
+.motion-viewport-surface:not(.motion-in-viewport) .animate-aurora-2,
+.motion-viewport-surface:not(.motion-in-viewport) .animate-aurora-3,
+.motion-viewport-surface:not(.motion-in-viewport) .animate-aurora-4,
+.motion-viewport-surface:not(.motion-in-viewport) .animate-title-breathe,
+.motion-viewport-surface:not(.motion-in-viewport) .marquee-track {
+  animation-play-state: paused;
+}
+
+html.is-scrolling .animate-gradient,
+html.is-scrolling .hero-motion-surface .animate-hero-drift,
+html.is-scrolling .hero-motion-surface .animate-aurora-1,
+html.is-scrolling .hero-motion-surface .animate-aurora-2,
+html.is-scrolling .hero-motion-surface .animate-aurora-3,
+html.is-scrolling .hero-motion-surface .animate-aurora-4,
+html.is-scrolling .hero-motion-surface .animate-title-breathe {
+  animation-play-state: paused;
+}
+
 .motion-reveal {
   opacity: 0;
-  transform: translate3d(0, 24px, 0);
+  transform: translate3d(0, 18px, 0);
   transition:
-    opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.64s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.74s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
   backface-visibility: hidden;
 }
@@ -267,13 +291,17 @@ body {
 
 .motion-product-card {
   transform: translateZ(0);
+  transition:
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.42s ease;
 }
 
 .motion-product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow:
-    0 28px 70px rgb(0 0 0 / 0.38),
-    0 0 40px rgb(113 156 224 / 0.08);
+    0 24px 60px rgb(0 0 0 / 0.34),
+    0 0 32px rgb(113 156 224 / 0.07);
 }
 
 .motion-feature-card {
@@ -296,7 +324,7 @@ body {
 
 .motion-feature-card:hover {
   background-color: transparent !important;
-  transform: translateY(-6px);
+  transform: translateY(-3px);
 }
 
 .motion-feature-card:hover::after {
@@ -312,8 +340,8 @@ body {
 }
 
 .motion-feature-card:hover .motion-feature-icon {
-  transform: translateY(-3px) rotate(-3deg) scale(1.08);
-  box-shadow: 0 14px 38px rgb(113 156 224 / 0.26);
+  transform: translateY(-2px) scale(1.045);
+  box-shadow: 0 12px 32px rgb(113 156 224 / 0.22);
 }
 
 .motion-review-card {
@@ -321,8 +349,8 @@ body {
 }
 
 .motion-review-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 45px rgb(0 0 0 / 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 38px rgb(0 0 0 / 0.18);
 }
 
 .marquee-track {
@@ -333,13 +361,15 @@ body {
 
 .motion-faq-row {
   transition:
+    opacity 0.64s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.74s cubic-bezier(0.16, 1, 0.3, 1),
     background-color 0.3s ease,
-    padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow 0.3s ease;
 }
 
 .motion-faq-row:hover {
-  background-color: rgb(255 255 255 / 0.018);
-  padding-inline: 1.75rem;
+  background-color: rgb(255 255 255 / 0.012);
+  box-shadow: inset 2px 0 0 rgb(113 156 224 / 0.28);
 }
 
 .motion-footer-link {
@@ -350,7 +380,7 @@ body {
 }
 
 .motion-footer-link:hover {
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 .motion-modal-backdrop {
