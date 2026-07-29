@@ -6,7 +6,7 @@ export default function Footer() {
           aria-hidden="true"
           className="h-px w-full bg-gradient-to-r from-transparent via-border/70 to-transparent"
         ></div>
-        <div className="grid gap-10 pt-12 md:grid-cols-[1.4fr_2fr] lg:gap-16">
+        <div className="motion-reveal grid gap-10 pt-12 md:grid-cols-[1.4fr_2fr] lg:gap-16">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
               <h2 className="bg-linear-to-b from-white/95 via-white/85 to-white/75 bg-clip-text bg-transparent text-2xl font-bold leading-tight tracking-tighter text-transparent [text-shadow:_0_4px_24px_rgba(255,255,255,0.2)]">
@@ -52,7 +52,7 @@ export default function Footer() {
               <ul className="mt-4 space-y-3">
                 <li>
                   <a
-                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    className="motion-footer-link text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                     href="/status"
                   >
                     Status
@@ -60,7 +60,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    className="motion-footer-link text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                     href="/reviews"
                   >
                     Reviews
@@ -75,7 +75,7 @@ export default function Footer() {
               <ul className="mt-4 space-y-3">
                 <li>
                   <a
-                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    className="motion-footer-link text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                     href="/legal/terms"
                   >
                     Terms of Service
@@ -83,7 +83,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    className="motion-footer-link text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                     href="/legal/privacy"
                   >
                     Privacy Policy
