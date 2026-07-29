@@ -1,8 +1,10 @@
-import { getProducts } from "@/lib/shoppex";
+import { getProducts, getProductVariants } from "@/lib/shoppex";
 import ProductCard from "./ProductCard";
 
 export default async function Products() {
   const products = await getProducts();
+  const product = products[0] || null;
+  const variants = product ? await getProductVariants(product.uniqid) : [];
   
   return (
     <section id="products" className="w-full py-12 sm:py-24">
@@ -19,7 +21,7 @@ export default async function Products() {
         </div>
 
         {/* Interactive Product Card */}
-        <ProductCard products={products} />
+        <ProductCard product={product} variants={variants} />
 
       </div>
     </section>
