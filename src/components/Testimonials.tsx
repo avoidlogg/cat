@@ -40,7 +40,7 @@ export default function Testimonials() {
       <div className="w-full h-full flex flex-col">
         <div className="relative w-full">
           <div className="text-center relative overflow-hidden py-8 md:py-12 px-4 md:px-8 lg:px-12">
-            <h2 className="text-sm text-muted-foreground text-balance font-semibold tracking-tight uppercase">
+            <h2 className="motion-reveal text-sm text-muted-foreground text-balance font-semibold tracking-tight uppercase">
               Reviews
             </h2>
           </div>
@@ -54,13 +54,15 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {loading ? (
-          <div className="w-full flex justify-center py-20">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-          </div>
-        ) : (
-          <ReviewsCarousel reviews={reviews} />
-        )}
+        <div className="motion-reveal">
+          {loading ? (
+            <div className="w-full flex justify-center py-20">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            </div>
+          ) : (
+            <ReviewsCarousel reviews={reviews} />
+          )}
+        </div>
       </div>
     </section>
   );
