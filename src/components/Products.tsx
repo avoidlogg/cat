@@ -11,7 +11,7 @@ export default async function Products() {
       <div className="w-full h-full flex flex-col px-4 md:px-8 lg:px-12 items-center">
         
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="motion-reveal text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Our <span className="text-primary">Products</span>
           </h2>
