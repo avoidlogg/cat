@@ -1,70 +1,431 @@
-import type { Metadata } from "next"
-import "./globals.css"
-import MotionEffects from "@/components/MotionEffects"
+@import "tailwindcss";
 
-export const metadata: Metadata = {
-  title: "Heroic Bypass - #1 NVIDIA Stream Proof FiveM Cheat",
-  icons: {
-    icon: "/logo.png",
-  },
-  description:
-    "The premium undetected FiveM external cheat. Features the best aimbot, ESP, and HWID spoofer. 100% NVIDIA Stream Proof and OBS hidden. Join thousands of users today.",
-  keywords: [
-    "fivem cheat", "fivem external", "fivem aimbot", "fivem esp",
-    "fivem spoofer", "hwid spoofer", "nvidia stream proof", "obs bypass",
-    "undetected fivem cheat",
-  ],
-  openGraph: {
-    title: "Heroic Bypass - #1 NVIDIA Stream Proof FiveM Cheat",
-    description:
-      "The premium undetected FiveM external cheat. 100% NVIDIA Stream Proof, OBS hidden, and constantly updated.",
-    siteName: "Heroic Bypass",
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Heroic Bypass - #1 NVIDIA Stream Proof FiveM Cheat",
-    description:
-      "The premium undetected FiveM external cheat. 100% NVIDIA Stream Proof, OBS hidden, and constantly updated.",
-  },
-  robots: { index: true, follow: true },
-  other: {
-    "color-scheme": "dark",
-  },
+@theme {
+  --color-background: #0a0a0f;
+  --color-foreground: #f0f0f5;
+  --color-primary: #719ce0;
+  --color-primary-light: #91ace1;
+  --color-primary-dark: #416cad;
+  --color-border: #1e1e30;
+  --color-card: #14141e;
+  --color-muted-foreground: #9090a5;
+  
+  --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-        {/* Discord/Twitter Embed Theme Color matching globals.css background */}
-        <meta name="theme-color" content="#0a0a0f" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Heroic Bypass",
-              url: "https://heroicbypass.com",
-              description: "The premium undetected NVIDIA Stream Proof FiveM external cheat.",
-              sameAs: ["https://discord.gg/heroicbypass"],
-            }),
-          }}
-        />
-      </head>
-      <body>
-        <div className="fixed inset-0 -z-10 animate-gradient bg-gradient-to-br from-blue-950/20 via-transparent via-30% to-blue-900/10 to-70%" />
-        {children}
-        <MotionEffects />
-      </body>
-    </html>
-  )
+/* We still need color-scheme dark so standard browser elements look correct */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; opacity: 0.6; }
+  25% { background-position: 100% 0%; opacity: 1; }
+  50% { background-position: 100% 100%; opacity: 0.6; }
+  75% { background-position: 0% 100%; opacity: 1; }
+}
+.animate-gradient {
+  animation: gradientShift 12s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+/* Base custom animations if any */
+@keyframes auroraFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes aurora-1 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-50px) scale(1.05); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(50px) scale(0.95); }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(50px) scale(1.02); }
+}
+@keyframes aurora-4 {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(-50px) scale(0.98); }
+}
+
+.animate-aurora-1 { animation: aurora-1 15s ease-in-out infinite; }
+.animate-aurora-2 { animation: aurora-2 18s ease-in-out infinite; }
+.animate-aurora-3 { animation: aurora-3 20s ease-in-out infinite; }
+.animate-aurora-4 { animation: aurora-4 12s ease-in-out infinite; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 5px;
+  border: 2px solid var(--color-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Entry Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-delayed {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delayed-2 {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+/* Refined site motion */
+@keyframes headerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroDrift {
+  0%, 100% {
+    transform: scale(1.035) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate3d(0, -0.75%, 0);
+  }
+}
+
+@keyframes gridDrift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 80px 80px;
+  }
+}
+
+@keyframes titleBreathe {
+  0%, 100% {
+    opacity: 0.94;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.006);
+  }
+}
+
+@keyframes scrollArrow {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  35% {
+    opacity: 1;
+  }
+  75%, 100% {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+}
+
+@keyframes modalBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-header-in {
+  animation: headerIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-drift {
+  animation: heroDrift 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-grid-drift {
+  animation: gridDrift 18s linear infinite;
+}
+
+.animate-title-breathe {
+  animation: titleBreathe 5s ease-in-out 1.1s infinite;
+  transform-origin: center;
+}
+
+.motion-reveal {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
+
+.motion-reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.motion-delay-1 {
+  transition-delay: 90ms;
+}
+
+.motion-delay-2 {
+  transition-delay: 180ms;
+}
+
+.motion-nav-link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.motion-button {
+  overflow: hidden;
+}
+
+.motion-button::before {
+  content: "";
+  position: absolute;
+  inset: -100% auto -100% -35%;
+  width: 24%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.2), transparent);
+  transform: skewX(-18deg) translateX(-180%);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-button:hover {
+  transform: translateY(-2px);
+}
+
+.motion-button:hover::before {
+  transform: skewX(-18deg) translateX(700%);
+}
+
+.motion-product-card {
+  transform: translateZ(0);
+}
+
+.motion-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 28px 70px rgb(0 0 0 / 0.38),
+    0 0 40px rgb(113 156 224 / 0.08);
+}
+
+.motion-feature-card {
+  position: relative;
+}
+
+.motion-feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  z-index: -1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(113 156 224 / 0.09), transparent 68%);
+  opacity: 0;
+  transform: scale(0.78);
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-feature-card:hover {
+  transform: translateY(-6px);
+}
+
+.motion-feature-card:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.motion-feature-icon {
+  box-shadow: 0 8px 30px rgb(113 156 224 / 0.12);
+  transition:
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease;
+}
+
+.motion-feature-card:hover .motion-feature-icon {
+  transform: translateY(-3px) rotate(-3deg) scale(1.08);
+  box-shadow: 0 14px 38px rgb(113 156 224 / 0.26);
+}
+
+.motion-review-card {
+  transform: translateZ(0);
+}
+
+.motion-review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgb(0 0 0 / 0.2);
+}
+
+.marquee-track:hover {
+  animation-play-state: paused !important;
+}
+
+.motion-faq-row {
+  transition:
+    background-color 0.3s ease,
+    padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-faq-row:hover {
+  background-color: rgb(255 255 255 / 0.018);
+  padding-inline: 1.75rem;
+}
+
+.motion-footer-link {
+  display: inline-block;
+  transition:
+    color 0.2s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.motion-footer-link:hover {
+  transform: translateX(3px);
+}
+
+.motion-modal-backdrop {
+  animation: modalBackdropIn 0.25s ease-out both;
+}
+
+.motion-modal-panel {
+  animation: modalPanelIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.scroll-cue {
+  position: fixed;
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  left: clamp(1.25rem, 3vw, 3rem);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgb(240 240 245 / 0.72);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear;
+}
+
+.scroll-cue:hover {
+  color: var(--color-foreground);
+}
+
+.scroll-cue--hidden {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s ease,
+    visibility 0s linear 0.4s;
+}
+
+.scroll-cue__label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.scroll-cue__arrow {
+  color: rgb(240 240 245 / 0.62);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1rem;
+  line-height: 1;
+  animation: scrollArrow 1.75s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .motion-reveal {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
 }
