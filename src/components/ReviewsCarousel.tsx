@@ -13,7 +13,7 @@ type Review = {
 
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <div className="flex-shrink-0 w-80 flex flex-col border-none border-0 border-l-0 transition-all duration-300 hover:bg-white/[0.03] rounded-lg">
+    <div className="motion-review-card flex-shrink-0 w-80 flex flex-col border-none border-0 border-l-0 transition-all duration-300 hover:bg-white/[0.03] rounded-lg">
       <div className="px-4 py-5 sm:p-6 grow">
         <div className="flex items-center gap-4 mb-4">
           <img
