@@ -60,7 +60,7 @@ export default function Hero() {
                   The #1 <span className="text-primary/90 font-medium">NVIDIA Stream Proof</span> Cheat
                 </h2>
                 <div className="mt-8 sm:mt-10 relative animate-fade-in-delayed-2">
-                  <a href="/products">
+                  <a href="#products">
                     <button className="group relative cursor-pointer inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-medium tracking-wide text-white bg-white/[0.08] backdrop-blur-xl backdrop-saturate-[1.8] border border-white/[0.12] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:bg-white/[0.14] hover:border-white/[0.2] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_0_30px_#719ce026] active:scale-[0.98] transition-all duration-300 ease-out">
                       Start Dominating
                       <LuArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform duration-300" />
