@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
+import MotionEffects from "@/components/MotionEffects"
 
 export const metadata: Metadata = {
   title: "Heroic Bypass - #1 NVIDIA Stream Proof FiveM Cheat",
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div className="fixed inset-0 -z-10 animate-gradient bg-gradient-to-br from-blue-950/20 via-transparent via-30% to-blue-900/10 to-70%" />
         {children}
+        <MotionEffects />
       </body>
     </html>
   )
