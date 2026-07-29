@@ -27,14 +27,19 @@ body {
 }
 
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; opacity: 0.6; }
-  25% { background-position: 100% 0%; opacity: 1; }
-  50% { background-position: 100% 100%; opacity: 0.6; }
-  75% { background-position: 0% 100%; opacity: 1; }
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1.06) translate3d(-1%, -0.5%, 0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.1) translate3d(1%, 0.5%, 0);
+  }
 }
+
 .animate-gradient {
-  animation: gradientShift 12s ease-in-out infinite;
-  background-size: 200% 200%;
+  animation: gradientShift 18s ease-in-out infinite;
+  will-change: opacity, transform;
 }
 
 /* Base custom animations if any */
@@ -146,16 +151,13 @@ body {
 }
 
 @keyframes scrollArrow {
-  0% {
-    opacity: 0;
-    transform: translateY(-5px);
+  0%, 100% {
+    opacity: 0.62;
+    transform: translate3d(0, -3px, 0);
   }
-  35% {
+  50% {
     opacity: 1;
-  }
-  75%, 100% {
-    opacity: 0;
-    transform: translateY(7px);
+    transform: translate3d(0, 7px, 0);
   }
 }
 
@@ -191,10 +193,10 @@ body {
 
 .motion-reveal {
   opacity: 0;
-  transform: translate3d(0, 32px, 0);
+  transform: translate3d(0, 24px, 0);
   transition:
-    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.82s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
   backface-visibility: hidden;
 }
@@ -202,6 +204,10 @@ body {
 .motion-reveal.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+}
+
+.motion-reveal.motion-settled {
+  will-change: auto;
 }
 
 .motion-delay-1 {
@@ -350,8 +356,8 @@ body {
 
 .scroll-cue {
   position: fixed;
-  bottom: clamp(1.5rem, 4vw, 3rem);
-  left: clamp(1.25rem, 3vw, 3rem);
+  bottom: clamp(1.4rem, 3vw, 2.5rem);
+  left: 50%;
   z-index: 40;
   display: flex;
   flex-direction: column;
@@ -359,7 +365,7 @@ body {
   gap: 0.45rem;
   color: rgb(240 240 245 / 0.72);
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(-50%, 0, 0);
   transition:
     opacity 0.45s ease,
     transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
@@ -374,7 +380,7 @@ body {
   visibility: hidden;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(14px);
+  transform: translate3d(-50%, 14px, 0);
   transition:
     opacity 0.3s ease,
     transform 0.4s ease,
@@ -394,7 +400,8 @@ body {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 1rem;
   line-height: 1;
-  animation: scrollArrow 1.75s ease-in-out infinite;
+  animation: scrollArrow 1.35s ease-in-out infinite;
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -403,6 +410,7 @@ body {
   }
 
   .animate-header-in,
+  .animate-gradient,
   .animate-hero-drift,
   .animate-title-breathe,
   .scroll-cue__arrow,
