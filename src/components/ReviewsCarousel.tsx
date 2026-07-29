@@ -106,12 +106,12 @@ export default function ReviewsCarousel({ reviews }: { reviews: Review[] }) {
     <div className="px-4 md:px-8 lg:px-12 max-w-7xl mx-auto pb-12 space-y-6">
       <style>{`
         @keyframes marquee-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
         @keyframes marquee-right {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
         }
       `}</style>
       {rows.map((row, i) => (
