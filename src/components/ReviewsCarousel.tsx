@@ -54,8 +54,14 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 function MarqueeRow({ reviews, dir }: { reviews: Review[]; dir: "left" | "right" }) {
-  const duplicated = [...reviews, ...reviews]
-  const duration = Math.max(20, reviews.length * 6)
+  let baseReviews = [...reviews]
+  while (baseReviews.length < 10) {
+    baseReviews = [...baseReviews, ...reviews]
+  }
+
+  const duplicated = [...baseReviews, ...baseReviews]
+  
+  const duration = baseReviews.length * 6
 
   return (
     <div className="flex overflow-hidden">
@@ -87,10 +93,13 @@ export default function ReviewsCarousel({ reviews }: { reviews: Review[] }) {
     )
   }
 
-  const perRow = 5
-  const rows: Review[][] = []
-  for (let i = 0; i < reviews.length; i += perRow) {
-    rows.push(reviews.slice(i, i + perRow))
+  const rows: Review[][] = [];
+  if (reviews.length <= 3) {
+    rows.push(reviews);
+  } else {
+    const half = Math.ceil(reviews.length / 2);
+    rows.push(reviews.slice(0, half));
+    rows.push(reviews.slice(half));
   }
 
   return (
