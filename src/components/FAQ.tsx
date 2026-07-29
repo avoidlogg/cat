@@ -49,7 +49,7 @@ export default function FAQ() {
       <div className="w-full h-full flex flex-col">
         <div className="relative w-full">
           <div className="text-center relative overflow-hidden py-8 md:py-12 px-4 md:px-8 lg:px-12">
-            <h2 className="text-sm text-muted-foreground text-balance font-semibold tracking-tight uppercase">
+            <h2 className="motion-reveal text-sm text-muted-foreground text-balance font-semibold tracking-tight uppercase">
               FREQUENTLY ASKED QUESTIONS
             </h2>
           </div>
@@ -65,14 +65,14 @@ export default function FAQ() {
         
         <div>
           <div className="mx-auto max-w-5xl px-6 py-12 relative">
-            <div className="w-full space-y-2">
+            <div className="motion-reveal w-full space-y-2">
               {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
                 
                 return (
                   <div
                     key={index}
-                    className="border-b border-border/50 px-6"
+                    className="motion-faq-row border-b border-border/50 px-6"
                   >
                     <h3 className="flex">
                       <button
@@ -93,7 +93,7 @@ export default function FAQ() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className={`lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200 ${
+                          className={`lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-400 ${
                             isOpen ? "rotate-180" : ""
                           }`}
                           aria-hidden="true"
@@ -103,7 +103,7 @@ export default function FAQ() {
                       </button>
                     </h3>
                     <div
-                      className={`overflow-hidden text-sm transition-all duration-300 ease-in-out ${
+                      className={`overflow-hidden text-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                         isOpen ? "max-h-40 opacity-100 mb-4" : "max-h-0 opacity-0"
                       }`}
                     >
