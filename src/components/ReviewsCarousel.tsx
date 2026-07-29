@@ -8,7 +8,7 @@ type Review = {
   product: string;
   verified: boolean;
   date: string;
-  source: "discord" | "shoppex";
+  source?: "discord" | "shoppex";
 };
 
 function ReviewCard({ review }: { review: Review }) {
