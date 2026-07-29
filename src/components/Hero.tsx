@@ -25,7 +25,7 @@ export default function Hero() {
           </div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_theme(colors.background)_90%)]"></div>
         </div>
-        <div className="pointer-events-none absolute inset-0 z-[2] opacity-[0.010] animate-grid-drift" style={{ backgroundImage: 'linear-gradient(theme(colors.foreground) 1px, transparent 1px), linear-gradient(90deg, theme(colors.foreground) 1px, transparent 1px)', backgroundSize: '80px 80px' }}></div>
+        <div className="pointer-events-none absolute inset-0 z-[2] opacity-[0.010]" style={{ backgroundImage: 'linear-gradient(theme(colors.foreground) 1px, transparent 1px), linear-gradient(90deg, theme(colors.foreground) 1px, transparent 1px)', backgroundSize: '80px 80px' }}></div>
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-72 z-[3] bg-gradient-to-t from-background via-background/50 to-transparent"></div>
         <div className="relative z-10">
           <div className="relative z-10 w-full container px-4 sm:px-6 pb-[8vh] sm:pb-[12vh] -translate-y-[10px]">
