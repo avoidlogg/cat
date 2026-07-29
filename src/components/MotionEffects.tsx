@@ -11,12 +11,15 @@ export default function MotionEffects() {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const settleTimers: number[] = [];
     const revealElements = Array.from(
       document.querySelectorAll<HTMLElement>(".motion-reveal"),
     );
 
     if (reduceMotion) {
-      revealElements.forEach((element) => element.classList.add("is-visible"));
+      revealElements.forEach((element) =>
+        element.classList.add("is-visible", "motion-settled"),
+      );
     } else {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -25,17 +28,26 @@ export default function MotionEffects() {
 
             entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
+
+            settleTimers.push(
+              window.setTimeout(() => {
+                entry.target.classList.add("motion-settled");
+              }, 1200),
+            );
           });
         },
         {
-          threshold: 0.12,
-          rootMargin: "0px 0px -8% 0px",
+          threshold: 0.1,
+          rootMargin: "0px 0px -6% 0px",
         },
       );
 
       revealElements.forEach((element) => observer.observe(element));
 
-      return () => observer.disconnect();
+      return () => {
+        observer.disconnect();
+        settleTimers.forEach((timer) => window.clearTimeout(timer));
+      };
     }
   }, [pathname]);
 
@@ -70,7 +82,7 @@ export default function MotionEffects() {
     >
       <span className="scroll-cue__label">Scroll</span>
       <span className="scroll-cue__arrow" aria-hidden="true">
-        ↓
+        &darr;
       </span>
     </a>
   );
