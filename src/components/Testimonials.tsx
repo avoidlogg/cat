@@ -36,7 +36,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="w-full">
+    <section id="testimonials" className="motion-viewport-surface w-full">
       <div className="w-full h-full flex flex-col">
         <div className="relative w-full">
           <div className="text-center relative overflow-hidden py-8 md:py-12 px-4 md:px-8 lg:px-12">
