@@ -77,6 +77,7 @@ export default function MotionEffects() {
     let targetY = currentY;
     let animationFrame = 0;
     let isAnimating = false;
+    let lastFrameTime = 0;
 
     const maximumScroll = () =>
       Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
@@ -85,6 +86,7 @@ export default function MotionEffects() {
       if (animationFrame) cancelAnimationFrame(animationFrame);
       animationFrame = 0;
       isAnimating = false;
+      lastFrameTime = 0;
       currentY = window.scrollY;
       targetY = currentY;
       document.documentElement.classList.remove("inertial-scrolling");
@@ -112,9 +114,15 @@ export default function MotionEffects() {
       return false;
     };
 
-    const animateScroll = () => {
+    const animateScroll = (timestamp: number) => {
       const distance = targetY - currentY;
-      currentY += distance * 0.115;
+      const elapsed = lastFrameTime
+        ? Math.min(timestamp - lastFrameTime, 32)
+        : 1000 / 60;
+      const frameAdjustedEase = 1 - Math.pow(1 - 0.13, elapsed / (1000 / 60));
+
+      lastFrameTime = timestamp;
+      currentY += distance * frameAdjustedEase;
 
       if (Math.abs(distance) < 0.35) {
         currentY = targetY;
@@ -141,7 +149,15 @@ export default function MotionEffects() {
       if (!delta || canScrollNestedElement(event.target, delta)) return;
 
       event.preventDefault();
-      targetY = Math.min(maximumScroll(), Math.max(0, targetY + delta));
+      const maximumLead = window.innerHeight * 1.25;
+      const proposedTarget = targetY + delta;
+      const minimumTarget = Math.max(0, currentY - maximumLead);
+      const maximumTarget = Math.min(maximumScroll(), currentY + maximumLead);
+
+      targetY = Math.min(
+        maximumTarget,
+        Math.max(minimumTarget, proposedTarget),
+      );
 
       if (!isAnimating) {
         currentY = window.scrollY;
