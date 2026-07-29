@@ -8,47 +8,37 @@ export default function MotionEffects() {
   const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
     const settleTimers: number[] = [];
     const revealElements = Array.from(
       document.querySelectorAll<HTMLElement>(".motion-reveal"),
     );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-    if (reduceMotion) {
-      revealElements.forEach((element) =>
-        element.classList.add("is-visible", "motion-settled"),
-      );
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
 
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+          settleTimers.push(
+            window.setTimeout(() => {
+              entry.target.classList.add("motion-settled");
+            }, 1200),
+          );
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -6% 0px",
+      },
+    );
 
-            settleTimers.push(
-              window.setTimeout(() => {
-                entry.target.classList.add("motion-settled");
-              }, 1200),
-            );
-          });
-        },
-        {
-          threshold: 0.1,
-          rootMargin: "0px 0px -6% 0px",
-        },
-      );
+    revealElements.forEach((element) => observer.observe(element));
 
-      revealElements.forEach((element) => observer.observe(element));
-
-      return () => {
-        observer.disconnect();
-        settleTimers.forEach((timer) => window.clearTimeout(timer));
-      };
-    }
+    return () => {
+      observer.disconnect();
+      settleTimers.forEach((timer) => window.clearTimeout(timer));
+    };
   }, [pathname]);
 
   useEffect(() => {
