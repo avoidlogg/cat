@@ -65,14 +65,15 @@ export default function FAQ() {
         
         <div>
           <div className="mx-auto max-w-5xl px-6 py-12 relative">
-            <div className="motion-reveal w-full space-y-2">
+            <div className="w-full space-y-2">
               {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
                 
                 return (
                   <div
                     key={index}
-                    className="motion-faq-row border-b border-border/50 px-6"
+                    className="motion-reveal motion-faq-row border-b border-border/50 px-6"
+                    style={{ transitionDelay: `${Math.min(index, 6) * 55}ms` }}
                   >
                     <h3 className="flex">
                       <button
