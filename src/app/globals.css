@@ -295,6 +295,7 @@ body {
 }
 
 .motion-feature-card:hover {
+  background-color: transparent !important;
   transform: translateY(-6px);
 }
 
